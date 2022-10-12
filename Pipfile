@@ -8,8 +8,8 @@ django = "*"
 psycopg2 = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
-python-decouple = "*"
 gunicorn = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
