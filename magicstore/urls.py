@@ -19,5 +19,6 @@ from django.urls import re_path as url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('Wand.urls'))
+    # url(r'^', include('Wand.urls')),
+    url(r'^', include('TicTacToe.urls'))
 ]

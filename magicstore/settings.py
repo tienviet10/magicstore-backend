@@ -168,7 +168,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'Wand'
+    'Wand',
+    'TicTacToe'
 ]
 
 # Dont use in production. Just add domain that is needed in production
