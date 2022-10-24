@@ -19,7 +19,7 @@ def tictactoe(request,id=0):
     # print(TicTacToe.objects.filter(TicTacToeId=1))
 
     if request.method=="GET":
-        tictac = TicTacToe.objects.get(TicTacToeId=1)
+        tictac = TicTacToe.objects.get(TicTacToeId=5)
         serializer = TicTacToeSerializer(tictac)
         return Response(serializer.data)
     elif request.method=="POST":
@@ -31,7 +31,7 @@ def tictactoe(request,id=0):
         return JsonResponse("Failed to Add",safe=False)
     elif request.method=="PUT":
         tictactoe_data = JSONParser().parse(request)
-        tictactoe = TicTacToe.objects.get(TicTacToeId=1)
+        tictactoe = TicTacToe.objects.get(TicTacToeId=5)
         tictactoe_serializer = TicTacToeSerializer(tictactoe, data=tictactoe_data)
         if tictactoe_serializer.is_valid():
             tictactoe_serializer.save()
@@ -39,4 +39,4 @@ def tictactoe(request,id=0):
         return JsonResponse("Failed to Modify",safe=False)
     elif request.method=="DELETE":
         pass
-# Create your views here.
+

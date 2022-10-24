@@ -1,8 +1,9 @@
 import json
 
-from asgiref.sync import async_to_sync
+from asgiref.sync import sync_to_async
 from channels.consumer import AsyncConsumer
-from channels.generic.websocket import WebsocketConsumer
+from TicTacToe.models import TicTacToe
+from TicTacToe.serializers import TicTacToeSerializer
 
 
 class BoardConsumer(AsyncConsumer):
@@ -17,7 +18,7 @@ class BoardConsumer(AsyncConsumer):
         })
 
     async def websocket_receive(self , event):
-        print(event["text"])
+        data = json.loads(event["text"])
         await self.channel_layer.group_send(
             self.board_room,{
                 "type": "board_message",
@@ -25,9 +26,9 @@ class BoardConsumer(AsyncConsumer):
 
             }
         )
+        await self.save_board(data)     
 
     async def board_message(self ,event):
-        print("Once")
         await self.send({
             "type" : "websocket.send",
             "text" : event['text']
@@ -35,4 +36,17 @@ class BoardConsumer(AsyncConsumer):
 
     
     async def websocket_disconnect(self , event):
-        print('Disconnect' , event)    
+        print('Disconnect' , event)   
+
+    @sync_to_async
+    def save_board(self, savedData):
+        board = TicTacToe.objects.get(TicTacToeId=5)
+        board_serializer = TicTacToeSerializer(board, data={
+            "CurrentBoard": savedData["marks"],
+            "PlayerX": savedData["playerX"],
+            "PlayerO": savedData["playerO"],
+            "CurrentPlayer" : savedData["marker"],
+        })
+        if board_serializer.is_valid():
+            board_serializer.save()
+      
