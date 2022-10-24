@@ -160,6 +160,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -169,7 +170,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'Wand',
-    'TicTacToe'
+    'TicTacToe',
 ]
 
 # Dont use in production. Just add domain that is needed in production
@@ -205,7 +206,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'magicstore.wsgi.application'
-
+ASGI_APPLICATION = 'magicstore.asgi.application'
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND':"channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
