@@ -1,1 +1,1 @@
-web: daphene magicstore.asgi:application --bind 0.0.0.0 -v2
+web: daphne magicstore.asgi:application --bind 0.0.0.0 -v2
