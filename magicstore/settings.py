@@ -207,10 +207,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'magicstore.wsgi.application'
 ASGI_APPLICATION = 'magicstore.asgi.application'
+# CHANNEL_LAYERS = {
+#     'default':{
+#         'BACKEND':"channels.layers.InMemoryChannelLayer"
+#     }
+# }
+
 CHANNEL_LAYERS = {
-    'default':{
-        'BACKEND':"channels.layers.InMemoryChannelLayer"
-    }
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis://default:goDvhO7BQBQoKI7U88bg@containers-us-west-51.railway.app:5865")],
+        },
+    },
 }
 
 # Database

@@ -11,6 +11,7 @@ django-cors-headers = "*"
 gunicorn = "*"
 python-dotenv = "*"
 channels = "==3.0.5"
+channels-redis = "*"
 
 [dev-packages]
 
