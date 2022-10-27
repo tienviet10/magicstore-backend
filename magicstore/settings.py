@@ -217,7 +217,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("redis://default:goDvhO7BQBQoKI7U88bg@containers-us-west-51.railway.app:5865")],
+            "hosts": [("redis://" + os.getenv('REDIS_NAME') + ":" + os.getenv('REDIS_PASS') + "@" + os.getenv('REDIS_CONTAINER') + ":" + os.getenv('REDIS_PORT'))],
         },
     },
 }
