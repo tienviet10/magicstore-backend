@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn magicstore.wsgi
+web: daphne magicstore.asgi:application --bind 0.0.0.0 -v2
