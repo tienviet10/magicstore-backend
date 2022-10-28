@@ -1,1 +1,1 @@
-web: daphne -b 0.0.0.0 -p magicstore.asgi:application
+web: daphne -b 0.0.0.0 magicstore.asgi:application
